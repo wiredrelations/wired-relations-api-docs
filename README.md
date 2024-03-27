@@ -1,8 +1,7 @@
-# wired-relations-api-docs
-Wired Relations API documentation
+# Wired Relations API documentation
 
 To access the Wired Relation API you need 
-1. The name of your tenant (tenantName aka org aka site)
+1. The name of your tenant (aka tenantName, org or site)
 2. The id of your tenant (tenantId aka orgId)
 3. User-name and password for an api-access user (please contace Wired Relation Customer Support to get this)
 
@@ -84,6 +83,8 @@ The response is identical to the authentication response:
 ```
 
 ## Changing password
+
+When you request API access Wired Relations will send you user name and password etc. The first thing you should do, when you receive this, is to change the password.
 
 # Graph QL
 
