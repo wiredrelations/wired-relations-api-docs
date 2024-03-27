@@ -35,7 +35,7 @@ The response will be like this:
     "tokenType": "Bearer"
 }
 ```
-__`accessToken`__ and `__tokenType__` is what you need to provide as bearer token on GraphQL requests.
+__`accessToken__` and `__tokenType__` is what you need to provide as bearer token on GraphQL requests.
 Ie. send a HTTP header named "Authorization" with the value constructed by concatenating tokenType and accessToken with a space between.
 
 The access token is a JWT (JSON Web Token). When you decode it (you can do that on eg. https://jwt.io), you will see that it has these properties (and more):
