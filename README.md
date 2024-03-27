@@ -35,7 +35,7 @@ The response will be like this:
     "tokenType": "Bearer"
 }
 ```
-__`accessToken__` and `__tokenType__` is what you need to provide as bearer token on GraphQL requests.
+__`accessToken`__ and __`tokenType`__ is what you need to provide as bearer token on GraphQL requests.
 Ie. send a HTTP header named "Authorization" with the value constructed by concatenating tokenType and accessToken with a space between.
 
 The access token is a JWT (JSON Web Token). When you decode it (you can do that on eg. https://jwt.io), you will see that it has these properties (and more):
@@ -55,9 +55,9 @@ expiry time (the `__exp__` property). It is a Unix timestamp, and it tells when 
 Please do not make any requests with expired token. Before each request, check if the token is still valid, and if not, use the `refreshToken`
 to get a new one, as dscribed below.
 
-`__refreshToken__` is for refreshing tokens as described in the next section.
+__`refreshToken`__ is for refreshing tokens as described in the next section.
 
-`__expiresInSeconds__` tells for how long the refresh token is valid.
+__`expiresInSeconds`__ tells for how long the refresh token is valid.
 
 ## Refreshing tokens
 
