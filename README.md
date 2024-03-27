@@ -87,10 +87,11 @@ The response is identical to the authentication response:
 When you request API access Wired Relations will send you user name and password etc. The first thing you should do, when you receive this, is to change the password.
 
 You can do that with the `setMyPassword` GraphQL mutation:
+
 `POST https://apidemo.wiredrelations.com/graphql2-service/graphql`
 ```graphql
 mutation {
-    setMyPassword(orgId: "af6d0e70-18f5-41ce-b5bb-df709358d523", password: "cZdVv091Zf4E") {
+    setMyPassword(orgId: "af6d0e70-18f5-41ce-b5bb-df709358d523", password: "1SoSecret!") {
         id
     }
 }
