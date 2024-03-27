@@ -8,7 +8,7 @@ To access the Wired Relation API you need
 # Authentication
 
 With very few exceptions the Wired Relations API is accessed through a Graph-QL interface, but before you can access that you need an access token.
-You get that by either authenticating, or if you already did that by using a refresh token to get a new set of tokens.
+You get that by either authenticating, or, if you already did that, by using a refresh token to get a new set of tokens.
 
 
 ## Log In / Authentication
