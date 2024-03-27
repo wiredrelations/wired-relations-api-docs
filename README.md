@@ -52,8 +52,8 @@ The access token is a JWT (JSON Web Token). When you decode it (you can do that 
 }
 ```
 JWTs are described in great detail in [RFC 7519](https://datatracker.ietf.org/doc/html/rfc7519), but the only thing you really need to use is the
-expiry time (the __exp__ property). It is a Unix timestamp, and it tells when the token expires.
-Please do not make any requests with expired token. Before each request, check if the token is still valid, and if not, use the __refreshToken__
+expiry time (the `__exp__` property). It is a Unix timestamp, and it tells when the token expires.
+Please do not make any requests with expired token. Before each request, check if the token is still valid, and if not, use the `refreshToken`
 to get a new one, as dscribed below.
 
 `__refreshToken__` is for refreshing tokens as described in the next section.
@@ -73,7 +73,15 @@ Token refresh is done using the same endpoint as authentication, but with `"gran
     "refresh_token": "c5011b3f-b8e6-4a5e-b395-59c7a0c7329a"
 }
 ```
-
+The response is identical to the authentication response:
+```json
+{
+    "accessToken": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJvcmciOiJhcGlkZW1vIiwibmFtZSI6IkFQSSBVc2VyIiwiZXhwIjoxNzExNTM5NTU5LCJ1c2VySWQiOiJlNTljN2MzNy1kOWViLTQ4MGUtYWUxZi1mYmU1MzE2MDQ2ZjYiLCJpYXQiOjE3MTE1MzU5NTksIm9yZ0lkIjoiYWY2ZDBlNzAtMThmNS00MWNlLWI1YmItZGY3MDkzNThkNTIzIiwiZW1haWwiOiJhcGktcmVhZC1vbmx5LXVzZXIiLCJhdXRob3JpdGllcyI6W3siYXV0aG9yaXR5IjoiUkVBRF9PTkxZIn1dLCJtb2R1bGVzIjoie1wic3ViRG9tYWluXCI6XCJhcGlkZW1vXCIsXCJiZXRhRmVhdHVyZXNcIjpbXSxcIm1vZHVsZXNFbmFibGVkXCI6W1wiQVNTRVNTTUVOVFwiLFwiUFJPQ0VTU0lOR19BQ1RJVklUSUVTXCIsXCJSSVNLU19WMlwiLFwiVEFTS19UWVBFU1wiLFwiV1JfTE9HSU5cIixcIkdNQUlMXCJdLFwicXVlc3Rpb25uYWlyZVwiOntcInZlcnNpb25cIjoyfSxcImN1c3RvbWVyc1wiOntcImVuYWJsZWRcIjpmYWxzZX0sXCJyaXNrc1wiOntcImVuYWJsZWRcIjpmYWxzZX0sXCJyaXNrc1YyXCI6e1wiZW5hYmxlZFwiOnRydWV9LFwicHJlbWl1bVwiOntcImxhYmVsc1wiOmZhbHNlfSxcImF6dXJlXCI6e1wiZW5hYmxlZFwiOmZhbHNlfSxcImFkdmFuY2VkQ29udHJvbHNcIjp7XCJlbmFibGVkXCI6ZmFsc2V9LFwiZ29vZ2xlXCI6e1wiZ3N1aXRlXCI6ZmFsc2UsXCJnbWFpbFwiOnRydWUsXCJzc29cIjpmYWxzZX0sXCJncm91cE9yZ2FuaXphdGlvblwiOntcImVuYWJsZWRcIjpmYWxzZX0sXCJraXRvc1wiOntcImVuYWJsZWRcIjpmYWxzZX0sXCJjdXN0b21RdWVzdGlvbm5haXJlXCI6e1wiZW5hYmxlZFwiOmZhbHNlfSxcImdvdmVybmFuY2VcIjp7XCJlbmFibGVkXCI6dHJ1ZSxcImN1c3RvbVwiOmZhbHNlLFwiaXNvMjcwMDJcIjpmYWxzZSxcImlzbzI3NzAxXCI6ZmFsc2UsXCJpc2FlMzAwMFwiOmZhbHNlLFwiaXNvMjcwMDJfMjAyMlwiOmZhbHNlfSxcImNvbnRyYWN0c1wiOntcImVuYWJsZWRcIjpmYWxzZX0sXCJzdWJwcm9jZXNzb3JcIjp7XCJlbmFibGVkXCI6ZmFsc2V9LFwiYXNzZXNzbWVudFwiOntcImVuYWJsZWRcIjp0cnVlfSxcInRvZG9UYXNrRXZhbHVhdGlvblwiOntcImVuYWJsZWRcIjpmYWxzZX0sXCJ1dWlkXCI6XCJhZjZkMGU3MC0xOGY1LTQxY2UtYjViYi1kZjcwOTM1OGQ1MjNcIn0iLCJ1c2VybmFtZSI6bnVsbH0.IQ9TCweNXnbvJhm0RAxgg57-J6QfMAcRWRPVUYpZlccm-cBTmlNWL9ewaV8B7W4qASLulYMExRFFI3a8UZRCiQ",
+    "refreshToken": "30262ac2-1332-411d-9bee-3fa5c54ef875",
+    "expiresInSeconds": 86400,
+    "tokenType": "Bearer"
+}
+```
 
 ## Changing password
 
