@@ -153,7 +153,7 @@ The number of elements (in this case Systems) to return.
 __`sort`__:
 Ordering. All queries have a default sort order, so if you don't need a specific sort order, omit this property. You can specify multiple fields seperated by `&`, and for each field you may select ascending or descring sort order by appending `,asc` or `,desc` to the property name.
 
-__`cursor`__: When requesting the first page omit thei property. To get the next page, use the value from `pageInfo.endCursor`. Please refer to
+__`cursor`__: When requesting the first page omit this property. To get the next page, use the value from `pageInfo.endCursor`. Please refer to
 the [GraphQL Cursor Connections Specification](https://relay.dev/graphql/connections.htm) for more details regarding pagination.
 
 
