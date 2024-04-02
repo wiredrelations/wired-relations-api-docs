@@ -106,7 +106,7 @@ The GraphQL schema is available at https://apidemo.wiredrelations.com/graphql2-s
 You can use GraphiQL to browse the schema and access the API. It is available here: [GraphiQL](https://apidemo.wiredrelations.com/graphql2-service/graphiql?path=/graphql2-service/graphql&wsPath=/graphql2-service/websocket).
 Another god tool for writing GraphQL queries and mutations is Postman.
 
-Regardless which tool you use, you ned to first get an access token as described in the (#authentication) section, and provide that in the `Authorization` header on all GraphQL requests.
+Regardless which tool you use, you ned to first get an access token as described in the [Authentication](#authentication) section, and provide that in the `Authorization` header on all GraphQL requests.
 
 ## Pagination and ordering
 
