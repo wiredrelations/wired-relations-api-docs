@@ -99,9 +99,69 @@ mutation {
 
 # Graph QL
 
+For an introduction to GraphQL please refer to [graphql.org](https://graphql.org/).
+
 The GraphQL schema is available at https://apidemo.wiredrelations.com/graphql2-service/graphql/schema
 
-You can use GraphiQL to browse the schema and access the API. It is available here: [GraphiQL](https://apidemo.wiredrelations.com/graphql2-service/graphiql?path=/graphql2-service/graphql&wsPath=/graphql2-service/websocket)
+You can use GraphiQL to browse the schema and access the API. It is available here: [GraphiQL](https://apidemo.wiredrelations.com/graphql2-service/graphiql?path=/graphql2-service/graphql&wsPath=/graphql2-service/websocket).
+Another god tool for writing GraphQL queries and mutations is Postman.
+
+Regardless which tool you use, you ned to first get an access token as described in the (#Authentication) section, and provide that in the `Authorization` header on all GraphQL requests.
+
+## Pagination and ordering
+
+Most queries returning lists of resources support pagination as described in [GraphQL Cursor Connections Specification](https://relay.dev/graphql/connections.htm).
+
+Typically queries with pagination and ordering lookes something like this:
+```
+query {
+  systems(
+    orgId: "af6d0e70-18f5-41ce-b5bb-df709358d523",
+    pageSize: 2,
+    sort: "name,asc&lastModifiedDate,desc",
+    cursor: "MToyOjM6bmFtZSxBU0MmbGFzdE1vZGlmaWVkRGF0ZSxERVND"
+  ) {
+    pageInfo {
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    edges {
+      node {
+        name
+        lastModifiedDate
+        owner {
+          name
+        }
+        responsible {
+          name
+        }
+      }
+    }
+  }
+}
+```
+
+Key elements in this query:
+
+__`systems`__:
+Name of the query.
+
+__`pageSize`__:
+The number of elements (in this case Systems) to return.
+
+__`sort`__:
+Ordering. All queries have a default sort order, so if you don't need a specific sort order, omit this property. You can specify multiple fields seperated by `&`, and for each field you may select ascending or descring sort order by appending `,asc` or `,desc` to the property name.
+
+__`cursor`__: When requesting the first page omit thei property. To get the next page, use the value from `pageInfo.endCursor`. Please refer to
+the [GraphQL Cursor Connections Specification](https://relay.dev/graphql/connections.htm) for more details regarding pagination.
+
+
+
+## Known issues
+
+Schemas for paginated response types (types with a `Connection` suffix), declares a `cursor` property under `edges`. We actually don't support that, so if you request that property the query will fail.
+
 
 ## Reference Documentation
 
