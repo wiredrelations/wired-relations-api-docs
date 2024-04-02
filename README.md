@@ -102,3 +102,8 @@ mutation {
 The GraphQL schema is available at https://apidemo.wiredrelations.com/graphql2-service/graphql/schema
 
 You can use GraphiQL to browse the schema and access the API. It is available here: [GraphiQL](https://apidemo.wiredrelations.com/graphql2-service/graphiql?path=/graphql2-service/graphql&wsPath=/graphql2-service/websocket)
+
+## Reference Documentation
+
+- GraphQL - Introduction, spec and community etc: https://graphql.org/
+- Pagination - The [GraphQL Cursor Connections Specification](https://relay.dev/graphql/connections.htm)
