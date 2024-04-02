@@ -99,8 +99,6 @@ mutation {
 
 # Graph QL
 
-TODO: graphiql and schema browsing has been disabled for the prod environment -why? And shouldn't we enable that?
+The GraphQL schema is available at https://apidemo.wiredrelations.com/graphql2-service/graphql/schema
 
-The GraphQL schema is available at https://x.wiredrelations.dk/graphql2-service/graphql/schema
-
-You can use GraphiQL to browse the schema and access the API. It is available here: [GraphiQL](https://x.wiredrelations.dk/graphql2-service/graphiql?path=/graphql2-service/graphql&wsPath=/graphql2-service/websocket)
+You can use GraphiQL to browse the schema and access the API. It is available here: [GraphiQL](https://apidemo.wiredrelations.com/graphql2-service/graphiql?path=/graphql2-service/graphql&wsPath=/graphql2-service/websocket)
