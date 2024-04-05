@@ -177,5 +177,7 @@ Schemas for paginated response types (types with a `Connection` suffix), declare
 
 Particularly where large amounts of data may be involved, we use plain JSON over HTTP:
 - Data Import - please refer to [http://swagger.wiredrelations.dk/data-import-service/swagger-ui/index.html](https://swagger.wiredrelations.dk/data-import-service/swagger-ui/index.html)
+- Data Export (to-be-documented)
+- Uploading Documents (to-be-documented)
 
 
