@@ -5,6 +5,10 @@ To access the Wired Relation API you need
 2. The id of your tenant (tenantId aka orgId)
 3. User-name and password for an api-access user (please contace Wired Relation Customer Support to get this)
 
+With that in hand you can [Authenticate](#authentication) to get an access token, and then you can access both [Graph QL](#graph-ql)
+and [Json-over-HTTP](#json-over-http-endpoints) endpoints.
+
+
 # Authentication
 
 With very few exceptions the Wired Relations API is accessed through a Graph-QL interface, but before you can access that you need an access token.
@@ -167,3 +171,11 @@ Schemas for paginated response types (types with a `Connection` suffix), declare
 
 - GraphQL - Introduction, spec and community etc: https://graphql.org/
 - Pagination - The [GraphQL Cursor Connections Specification](https://relay.dev/graphql/connections.htm)
+
+
+# JSON over HTTP endpoints
+
+Particularly where large amounts of data may be involved, we use plain JSON over HTTP:
+- Data Import - please refer to [http://swagger.wiredrelations.dk/data-import-service/swagger-ui/index.html](https://swagger.wiredrelations.dk/data-import-service/swagger-ui/index.html)
+
+
