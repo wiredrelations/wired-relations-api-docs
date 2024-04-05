@@ -55,7 +55,7 @@ The access token is a JWT (JSON Web Token). When you decode it (you can do that 
 }
 ```
 JWTs are described in great detail in [RFC 7519](https://datatracker.ietf.org/doc/html/rfc7519), but the only thing you really need to use is the
-expiry time (the `__exp__` property). It is a Unix timestamp, and it tells when the token expires.
+expiry time (the `exp` property). It is a Unix timestamp, and it tells when the token expires.
 Please do not make any requests with expired token. Before each request, check if the token is still valid, and if not, use the `refreshToken`
 to get a new one, as dscribed below.
 
