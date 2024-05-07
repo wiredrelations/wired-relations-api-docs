@@ -1,12 +1,11 @@
 # Wired Relations API documentation
 
-To access the Wired Relation API you need 
+To access the Wired Relations API you need 
 1. The name of your tenant (aka tenantName, org or site)
 2. The id of your tenant (tenantId aka orgId)
-3. User-name and password for an api-access user (please contace Wired Relation Customer Support to get this)
+3. Username and password for an api-access user (please contact Wired Relations Customer Support to request this)
 
-With that in hand you can [Authenticate](#authentication) to get an access token, and then you can access both [Graph QL](#graph-ql)
-and [Json-over-HTTP](#json-over-http-endpoints) endpoints.
+With that in hand you can [Authenticate](#authentication) to get an access token, and then you can access the [Graph QL](#graph-ql) endpoint.
 
 
 # Authentication
@@ -17,7 +16,7 @@ You get that by either authenticating, or, if you already did that, by using a r
 
 ## Log In / Authentication
 
-To log in make a POST request on https://{tenantName}.wiredrelations.com/user-management/org/{tenantId}/token2 with user-name and password in the
+To log in make a POST request on https://{tenantName}.wiredrelations.com/user-management/org/{tenantId}/token2 with username and password in the
 request body, like this:
 
 `POST https://apidemo.wiredrelations.com/user-management/org/af6d0e70-18f5-41ce-b5bb-df709358d523/token2`
@@ -88,7 +87,7 @@ The response is identical to the authentication response:
 
 ## Changing password
 
-When you request API access Wired Relations will send you user name and password etc. The first thing you should do, when you receive this, is to change the password.
+When you request API access Wired Relations will send you username and password etc. The first thing you should do, when you receive this, is to change the password.
 
 You can do that with the `setMyPassword` GraphQL mutation:
 
@@ -108,15 +107,15 @@ For an introduction to GraphQL please refer to [graphql.org](https://graphql.org
 The GraphQL schema is available at https://apidemo.wiredrelations.com/graphql2-service/graphql/schema
 
 You can use GraphiQL to browse the schema and access the API. It is available here: [GraphiQL](https://apidemo.wiredrelations.com/graphql2-service/graphiql?path=/graphql2-service/graphql&wsPath=/graphql2-service/websocket).
-Another god tool for writing GraphQL queries and mutations is Postman.
+Another good tool for writing GraphQL queries and mutations is Postman.
 
-Regardless which tool you use, you ned to first get an access token as described in the [Authentication](#authentication) section, and provide that in the `Authorization` header on all GraphQL requests.
+Regardless which tool you use, you need to first get an access token as described in the [Authentication](#authentication) section, and provide that in the `Authorization` header on all GraphQL requests.
 
 ## Pagination and ordering
 
 Most queries returning lists of resources support pagination as described in [GraphQL Cursor Connections Specification](https://relay.dev/graphql/connections.htm).
 
-Typically queries with pagination and ordering lookes something like this:
+Typically queries with pagination and ordering looks like this:
 ```
 query {
   systems(
@@ -155,9 +154,9 @@ __`pageSize`__:
 The number of elements (in this case Systems) to return.
 
 __`sort`__:
-Ordering. All queries have a default sort order, so if you don't need a specific sort order, omit this property. You can specify multiple fields seperated by `&`, and for each field you may select ascending or descring sort order by appending `,asc` or `,desc` to the property name.
+Ordering. All queries have a default sort order, so if you don't need a specific sort order, omit this property. You can specify multiple fields seperated by `&`, and for each field you may select ascending or descending sort order by appending `,asc` or `,desc` to the property name.
 
-__`cursor`__: When requesting the first page omit this property. To get the next page, use the value from `pageInfo.endCursor`. Please refer to
+__`cursor`__: When requesting the first page, omit this property. To get the next page, use the value from `pageInfo.endCursor`. Please refer to
 the [GraphQL Cursor Connections Specification](https://relay.dev/graphql/connections.htm) for more details regarding pagination.
 
 
@@ -176,8 +175,6 @@ Schemas for paginated response types (types with a `Connection` suffix), declare
 # JSON over HTTP endpoints
 
 Particularly where large amounts of data may be involved, we use plain JSON over HTTP:
-- Data Import - please refer to [http://swagger.wiredrelations.dk/data-import-service/swagger-ui/index.html](https://swagger.wiredrelations.dk/data-import-service/swagger-ui/index.html)
-- Data Export (to-be-documented)
 - Uploading Documents (to-be-documented)
 
 
