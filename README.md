@@ -172,9 +172,4 @@ Schemas for paginated response types (types with a `Connection` suffix), declare
 - Pagination - The [GraphQL Cursor Connections Specification](https://relay.dev/graphql/connections.htm)
 
 
-# JSON over HTTP endpoints
-
-Particularly where large amounts of data may be involved, we use plain JSON over HTTP:
-- Uploading Documents (to-be-documented)
-
 
