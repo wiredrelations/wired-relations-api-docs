@@ -5,21 +5,21 @@ To access the Wired Relations API you need
 2. The id of your tenant (tenantId aka orgId)
 3. Username and password for an api-access user (please contact Wired Relations Customer Support to request this)
 
-With that in hand you can [Authenticate](#authentication) to get an access token, and then you can access the [Graph QL](#graph-ql) endpoint.
+With that in hand you can [Authenticate](#authentication) to get an access token, and then you can access the [API](#api).
 
 
 # Authentication
 
-With very few exceptions the Wired Relations API is accessed through a Graph-QL interface, but before you can access that you need an access token.
+The Wired Relations API is accessed through REST resources, but before you can access those, you need an access token.
 You get that by either authenticating, or, if you already did that, by using a refresh token to get a new set of tokens.
 
 
 ## Log In / Authentication
 
-To log in make a POST request on https://{tenantName}.wiredrelations.com/user-management/org/{tenantId}/token2 with username and password in the
+To log in, make a POST request on https://api2.wiredrelations.com/org/{{orgId}}/auth/token with username and password in the
 request body, like this:
 
-`POST https://apidemo.wiredrelations.com/user-management/org/af6d0e70-18f5-41ce-b5bb-df709358d523/token2`
+`POST https://apidemo.wiredrelations.com/org/af6d0e70-18f5-41ce-b5bb-df709358d523/auth/token`
 ```json
 {
     "grant_type": "Bearer",
@@ -38,7 +38,7 @@ The response will be like this:
     "tokenType": "Bearer"
 }
 ```
-__`accessToken`__ and __`tokenType`__ is what you need to provide as bearer token on GraphQL requests.
+__`accessToken`__ and __`tokenType`__ is what you need to provide as bearer token on requests.
 Ie. send a HTTP header named "Authorization" with the value constructed by concatenating tokenType and accessToken with a space between.
 
 The access token is a JWT (JSON Web Token). When you decode it (you can do that on eg. https://jwt.io), you will see that it has these properties (and more):
@@ -56,7 +56,7 @@ The access token is a JWT (JSON Web Token). When you decode it (you can do that 
 JWTs are described in great detail in [RFC 7519](https://datatracker.ietf.org/doc/html/rfc7519), but the only thing you really need to use is the
 expiry time (the `exp` property). It is a Unix timestamp, and it tells when the token expires.
 Please do not make any requests with expired tokens. Before each request, check if the token is still valid, and if not, use the `refreshToken`
-to get a new one, as dscribed below.
+to get a new one, as described below.
 
 __`refreshToken`__ is for refreshing tokens as described in the next section.
 
@@ -64,11 +64,11 @@ __`expiresInSeconds`__ tells for how long the refresh token is valid.
 
 ## Refreshing tokens
 
-Access tokens have a relatively short validity period. When one expires you will need to get a fresh one using the `__refreshToken__` you received with
+Access tokens have a relatively short validity period. When one expires you will need to get a fresh one using the `refreshToken` you received with
 the access token. Refresh tokens can be used only once. When you use one, you get both a new access token and a new refresh token.
 
 Token refresh is done using the same endpoint as authentication, but with `"grant_type": "token_refresh"`, so a request could look like this:
-`POST https://apidemo.wiredrelations.com/user-management/org/af6d0e70-18f5-41ce-b5bb-df709358d523/token2`
+`POST https://api2.wiredrelations.com//org/af6d0e70-18f5-41ce-b5bb-df709358d523/auth/token`
 ```json
 {
     "grant_type": "token_refresh",
@@ -87,89 +87,56 @@ The response is identical to the authentication response:
 
 ## Changing password
 
-When you request API access Wired Relations will send you username and password etc. The first thing you should do, when you receive this, is to change the password.
+When you request API access Wired Relations will send you a username and password. The first thing you should do, when you receive this, is to change the password.
 
-You can do that with the `setMyPassword` GraphQL mutation:
+You can do that with the `setMyPassword` operation.:
 
-`POST https://apidemo.wiredrelations.com/graphql2-service/graphql`
-```graphql
-mutation {
-    setMyPassword(orgId: "af6d0e70-18f5-41ce-b5bb-df709358d523", password: "1SoSecret!") {
-        id
-    }
+`POST https://api2.wiredrelations.com/org/{{orgId}}/auth/setMyPassword`
+```json
+{
+  "newPassword": "string"
 }
 ```
 
-# Graph QL
+# API
 
-For an introduction to GraphQL please refer to [graphql.org](https://graphql.org/).
+The API is a basic REST API documented with OpenAPI (Swagger). For an introduction to Swagger please refer to [swagger.io/specification/v3](https://swagger.io/specification/v3/).
 
-The GraphQL schema is available at https://apidemo.wiredrelations.com/graphql2-service/graphql/schema
+The OpenAPI file (yaml) is available at https://api2.wiredrelations.com/api-service/api-docs.yaml
 
-You can use GraphiQL to browse the schema and access the API. It is available here: [GraphiQL](https://apidemo.wiredrelations.com/graphql2-service/graphiql?path=/graphql2-service/graphql&wsPath=/graphql2-service/websocket).
-Another good tool for writing GraphQL queries and mutations is Postman.
+You can use the Swagger Editor to browse our API. Import our OpenAPI file here: [Swagger Editor](https://editor-next.swagger.io/).
+The Swagger Editor can also help you generate client code in various languages. 
 
-Regardless which tool you use, you need to first get an access token as described in the [Authentication](#authentication) section, and provide that in the `Authorization` header on all GraphQL requests.
+Another good tool for working with REST APIs is Postman.
+
+You can either:
+- import the OpenAPI file into Postman, and then you can use the Postman collection to make requests to the API, or
+- use the Postman collection directly from: [Postman Collection](./postman/WiredRelationsPublicAPI_prod.postman_collection_2_1.json)
+
+Regardless which tool you use, you need to first get an access token as described in the [Authentication](#authentication) section, and provide that in the `Authorization` header on all requests.
 
 ## Pagination and ordering
 
-Most queries returning lists of resources support pagination as described in [GraphQL Cursor Connections Specification](https://relay.dev/graphql/connections.htm).
 
-Typically queries with pagination and ordering looks like this:
-```
-query {
-  systems(
-    orgId: "af6d0e70-18f5-41ce-b5bb-df709358d523",
-    pageSize: 2,
-    sort: "name,asc&lastModifiedDate,desc",
-    cursor: "MToyOjM6bmFtZSxBU0MmbGFzdE1vZGlmaWVkRGF0ZSxERVND"
-  ) {
-    pageInfo {
-      hasNextPage
-      startCursor
-      endCursor
-    }
-    edges {
-      node {
-        name
-        lastModifiedDate
-        owner {
-          name
-        }
-        responsible {
-          name
-        }
-      }
-    }
-  }
-}
-```
+Key elements for pagination and sorting:
 
-Key elements in this query:
+__`page`__:
+Zero-based page index (0..N). The page to be returned.
 
-__`systems`__:
-Name of the query.
-
-__`pageSize`__:
-The number of elements (in this case Systems) to return.
+__`size`__:
+The size of the page to be returned
 
 __`sort`__:
-Ordering. All queries have a default sort order, so if you don't need a specific sort order, omit this property. You can specify multiple fields seperated by `&`, and for each field you may select ascending or descending sort order by appending `,asc` or `,desc` to the property name.
+Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.
 
-__`cursor`__: When requesting the first page, omit this property. To get the next page, use the value from `pageInfo.endCursor`. Please refer to
-the [GraphQL Cursor Connections Specification](https://relay.dev/graphql/connections.htm) for more details regarding pagination.
-
-
-
-## Known issues
-
-Schemas for paginated response types (types with a `Connection` suffix), declares a `cursor` property under `edges`. We actually don't support that, so if you request that property the query will fail.
 
 
 ## Reference Documentation
 
-- GraphQL - Introduction, spec and community etc: https://graphql.org/
-- Pagination - The [GraphQL Cursor Connections Specification](https://relay.dev/graphql/connections.htm)
+- JWT (rfc7519): https://datatracker.ietf.org/doc/html/rfc7519
+- Swagger OpenAPI Specification: https://swagger.io/specification/v3/
+- Pagination (Spring): https://docs.spring.io/spring-data/rest/reference/paging-and-sorting.html
+- JSON Patch (rfc6902): https://datatracker.ietf.org/doc/html/rfc6902
 
 
 

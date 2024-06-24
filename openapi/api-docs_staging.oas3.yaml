@@ -1,0 +1,896 @@
+openapi: 3.0.1
+info:
+  title: Wired Relations Public API
+  description: This API exposes endpoints to manage resources of Wired Relations.
+  termsOfService: https://www.wiredrelations.com/legal/terms-of-service
+  contact:
+    name: Wired Relations
+    email: support@wiredrelations.com
+  license:
+    name: Wired Relations
+    url: https://www.wiredrelations.com
+  version: "1"
+servers:
+- url: https://api2.wiredrelations.dk
+  description: Generated server url
+security:
+- bearerAuth: []
+tags:
+- name: Systems
+  description: System management APIs
+- name: Authentication
+  description: Authentication APIs
+- name: Vendors
+  description: Vendor management APIs
+- name: Users
+  description: User management APIs
+paths:
+  /org/{orgId}/vendors:
+    get:
+      tags:
+      - Vendors
+      summary: Get vendors with optional filters
+      operationId: getAll
+      parameters:
+      - name: orgId
+        in: path
+        description: The id of the tenant
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: name
+        in: query
+        description: Name filter. The name of the vendor
+        required: false
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: Zero-based page index (0..N)
+        required: false
+        schema:
+          minimum: 0
+          type: integer
+          default: 0
+      - name: size
+        in: query
+        description: The size of the page to be returned
+        required: false
+        schema:
+          minimum: 1
+          type: integer
+          default: 20
+      - name: sort
+        in: query
+        description: "Sorting criteria in the format: property,(asc|desc). Default\
+          \ sort order is ascending. Multiple sort criteria are supported."
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Vendor'
+    post:
+      tags:
+      - Vendors
+      summary: Create a new vendor
+      operationId: post
+      parameters:
+      - name: orgId
+        in: path
+        description: The id of the tenant
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Vendor'
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vendor'
+  /org/{orgId}/systems:
+    get:
+      tags:
+      - Systems
+      summary: Get systems with optional filters
+      operationId: getAll_2
+      parameters:
+      - name: orgId
+        in: path
+        description: The id of the tenant
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: page
+        in: query
+        description: Zero-based page index (0..N)
+        required: false
+        schema:
+          minimum: 0
+          type: integer
+          default: 0
+      - name: size
+        in: query
+        description: The size of the page to be returned
+        required: false
+        schema:
+          minimum: 1
+          type: integer
+          default: 20
+      - name: sort
+        in: query
+        description: "Sorting criteria in the format: property,(asc|desc). Default\
+          \ sort order is ascending. Multiple sort criteria are supported."
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: sourceId
+        in: query
+        description: Source ID filter (must be provided with externalId or not at
+          all). An identifier of the source system. E.g. the name of the asset management
+          system.
+        required: false
+        schema:
+          type: string
+      - name: externalId
+        in: query
+        description: External ID filter (must be provided with sourceId or not at
+          all). An identifier of the system. E.g. the id of the system as defined
+          by the asset management system.
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/System'
+    post:
+      tags:
+      - Systems
+      summary: Create a new system
+      operationId: post_1
+      parameters:
+      - name: orgId
+        in: path
+        description: The id of the tenant
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/System'
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System'
+  /org/{orgId}/auth/token:
+    post:
+      tags:
+      - Authentication
+      summary: Authenticate the user and return a JWT token
+      description: Authenticate the user and return a JWT token. The token can be
+        used in the Authorization header as a bearer token. This endpoint is not authenticated.
+      operationId: authenticate
+      parameters:
+      - name: orgId
+        in: path
+        description: The id of the tenant
+        required: true
+        schema:
+          type: string
+      - name: useCookie
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: refresh_token_cookie
+        in: cookie
+        required: false
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+              - $ref: '#/components/schemas/LoginRequest'
+              - $ref: '#/components/schemas/TokenRefreshRequest'
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JwtAuthenticationResponse'
+  /org/{orgId}/auth/setMyPassword:
+    post:
+      tags:
+      - Authentication
+      summary: Set my password
+      description: Set the password for the authenticated user
+      operationId: setMyPassword
+      parameters:
+      - name: orgId
+        in: path
+        description: The id of the tenant
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetMyPasswordRequest'
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+  /org/{orgId}/vendors/{id}:
+    get:
+      tags:
+      - Vendors
+      summary: Get vendor by id
+      operationId: get
+      parameters:
+      - name: orgId
+        in: path
+        description: The id of the tenant
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: id
+        in: path
+        description: The id of the vendor
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vendor'
+    delete:
+      tags:
+      - Vendors
+      summary: Delete a vendor
+      operationId: delete
+      parameters:
+      - name: orgId
+        in: path
+        description: The id of the tenant
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: id
+        in: path
+        description: The id of the vendor
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vendor'
+    patch:
+      tags:
+      - Vendors
+      summary: Patch a vendor
+      operationId: patch
+      parameters:
+      - name: orgId
+        in: path
+        description: The id of the tenant
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: id
+        in: path
+        description: The id of the vendor
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/JsonPatch'
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vendor'
+  /org/{orgId}/systems/{id}:
+    get:
+      tags:
+      - Systems
+      summary: Get system by id
+      operationId: get_2
+      parameters:
+      - name: orgId
+        in: path
+        description: The id of the tenant
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: id
+        in: path
+        description: The id of the system
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System'
+    delete:
+      tags:
+      - Systems
+      summary: Delete a system
+      operationId: delete_1
+      parameters:
+      - name: orgId
+        in: path
+        description: The id of the tenant
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: id
+        in: path
+        description: The id of the system
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System'
+    patch:
+      tags:
+      - Systems
+      summary: Patch a system
+      operationId: patch_1
+      parameters:
+      - name: orgId
+        in: path
+        description: The id of the tenant
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: id
+        in: path
+        description: The id of the system
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/JsonPatch'
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System'
+  /org/{orgId}/users:
+    get:
+      tags:
+      - Users
+      summary: Get users with optional filters
+      operationId: getAll_1
+      parameters:
+      - name: orgId
+        in: path
+        description: The id of the tenant
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: emails
+        in: query
+        description: Emails filter. Search users by email
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: page
+        in: query
+        description: Zero-based page index (0..N)
+        required: false
+        schema:
+          minimum: 0
+          type: integer
+          default: 0
+      - name: size
+        in: query
+        description: The size of the page to be returned
+        required: false
+        schema:
+          minimum: 1
+          type: integer
+          default: 20
+      - name: sort
+        in: query
+        description: "Sorting criteria in the format: property,(asc|desc). Default\
+          \ sort order is ascending. Multiple sort criteria are supported."
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+  /org/{orgId}/users/{id}:
+    get:
+      tags:
+      - Users
+      summary: Get user by id
+      operationId: get_1
+      parameters:
+      - name: orgId
+        in: path
+        description: The id of the tenant
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: id
+        in: path
+        description: The id of the user
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        "404":
+          description: User not found
+components:
+  schemas:
+    AbstractAuditable:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The id of the resource
+          format: uuid
+          readOnly: true
+        createdById:
+          type: string
+          description: The id of the user who created the resource
+          format: uuid
+          readOnly: true
+        createdDate:
+          type: string
+          description: The date and time the resource was created
+          format: date-time
+          readOnly: true
+        lastModifiedById:
+          type: string
+          description: The id of the user who last modified the resource
+          format: uuid
+          readOnly: true
+        lastModifiedDate:
+          type: string
+          description: The date and time the resource was last modified
+          format: date-time
+          readOnly: true
+      description: Abstract class with auditable properties
+    AbstractVersionedAuditable:
+      type: object
+      description: Abstract class with version properties
+      allOf:
+      - $ref: '#/components/schemas/AbstractAuditable'
+      - type: object
+        properties:
+          id:
+            type: string
+            description: The id of the resource
+            format: uuid
+            readOnly: true
+          createdById:
+            type: string
+            description: The id of the user who created the resource
+            format: uuid
+            readOnly: true
+          createdDate:
+            type: string
+            description: The date and time the resource was created
+            format: date-time
+            readOnly: true
+          lastModifiedById:
+            type: string
+            description: The id of the user who last modified the resource
+            format: uuid
+            readOnly: true
+          lastModifiedDate:
+            type: string
+            description: The date and time the resource was last modified
+            format: date-time
+            readOnly: true
+          version:
+            type: integer
+            description: Resource version
+            format: int64
+            readOnly: true
+    Vendor:
+      required:
+      - name
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/AbstractVersionedAuditable'
+      - type: object
+        properties:
+          id:
+            type: string
+            description: The id of the resource
+            format: uuid
+            readOnly: true
+          createdById:
+            type: string
+            description: The id of the user who created the resource
+            format: uuid
+            readOnly: true
+          createdDate:
+            type: string
+            description: The date and time the resource was created
+            format: date-time
+            readOnly: true
+          lastModifiedById:
+            type: string
+            description: The id of the user who last modified the resource
+            format: uuid
+            readOnly: true
+          lastModifiedDate:
+            type: string
+            description: The date and time the resource was last modified
+            format: date-time
+            readOnly: true
+          version:
+            type: integer
+            description: Resource version
+            format: int64
+            readOnly: true
+          name:
+            type: string
+            description: Vendor name
+            example: Wired Relations ApS
+          description:
+            type: string
+            description: Vendor description
+            example: SaaS GRC provider
+    ExternalSourceAndId:
+      type: object
+      properties:
+        sourceId:
+          type: string
+          description: An identifier of the source system. E.g. the name of the asset
+            management system.
+          example: ServiceNow
+        externalId:
+          type: string
+          description: An identifier from the source. E.g. the id of the system as
+            defined by the asset management system.
+          example: "1234"
+      description: External source properties
+    SuggestionData:
+      type: object
+      properties:
+        status:
+          type: string
+          description: "The suggestion status of a resource. If the suggestion is\
+            \ accepted the suggestion status is removed from the resource, which is\
+            \ why there is no SuggestionStatus.ACCEPTED. Thus the SuggestionStatus\
+            \ can be left out if the resource is accepted by default."
+          enum:
+          - SUGGESTED
+          - REJECTED
+        deletionSuggestionStatus:
+          type: string
+          description: "The suggestion status of a resource. If the suggestion is\
+            \ accepted the suggestion status is removed from the resource, which is\
+            \ why there is no SuggestionStatus.ACCEPTED. Thus the SuggestionStatus\
+            \ can be left out if the resource is accepted by default."
+          enum:
+          - SUGGESTED
+          - REJECTED
+        sources:
+          type: array
+          description: List of sources for the suggestion
+          items:
+            $ref: '#/components/schemas/SuggestionSource'
+      description: The System suggestion handling and original source
+    SuggestionSource:
+      type: object
+      description: Suggestion with external source properties
+      allOf:
+      - $ref: '#/components/schemas/ExternalSourceAndId'
+      - type: object
+        properties:
+          sourceId:
+            type: string
+            description: An identifier of the source system. E.g. the name of the
+              asset management system.
+            example: ServiceNow
+          externalId:
+            type: string
+            description: An identifier from the source. E.g. the id of the system
+              as defined by the asset management system.
+            example: "1234"
+          firstSeen:
+            type: string
+            description: The first time the resource was seen in the source.
+            format: date-time
+            example: 2021-01-01T00:00:00Z
+          firstNotSeen:
+            type: string
+            description: The first time the resource was not seen in the source.
+            format: date-time
+            example: 2021-01-01T00:00:00Z
+    System:
+      required:
+      - name
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/AbstractVersionedAuditable'
+      - type: object
+        properties:
+          id:
+            type: string
+            description: The id of the resource
+            format: uuid
+            readOnly: true
+          createdById:
+            type: string
+            description: The id of the user who created the resource
+            format: uuid
+            readOnly: true
+          createdDate:
+            type: string
+            description: The date and time the resource was created
+            format: date-time
+            readOnly: true
+          lastModifiedById:
+            type: string
+            description: The id of the user who last modified the resource
+            format: uuid
+            readOnly: true
+          lastModifiedDate:
+            type: string
+            description: The date and time the resource was last modified
+            format: date-time
+            readOnly: true
+          version:
+            type: integer
+            description: Resource version
+            format: int64
+            readOnly: true
+          name:
+            type: string
+            description: System name
+            example: Wired Relations
+          description:
+            type: string
+            description: System description
+            example: SaaS GRC solution
+          ownerId:
+            type: string
+            description: User id of the System owner
+            format: uuid
+          responsibleId:
+            type: string
+            description: User id of the System responsible
+            format: uuid
+          vendorId:
+            type: string
+            description: Vendor id of the System vendor
+            format: uuid
+          suggestion:
+            $ref: '#/components/schemas/SuggestionData'
+          lifecycleStage:
+            type: string
+            description: The System lifecycle stage
+            example: ACTIVE
+            enum:
+            - ACTIVE
+            - NOT_ACTIVE
+    LoginRequest:
+      required:
+      - password
+      - usernameOrEmail
+      type: object
+      description: Login request
+      allOf:
+      - $ref: '#/components/schemas/TokenRequest'
+      - type: object
+        properties:
+          usernameOrEmail:
+            type: string
+            description: Username or email address
+          password:
+            type: string
+            description: Password
+          totp:
+            type: integer
+            description: Time-based One-Time Password (TOTP)
+            format: int32
+    TokenRefreshRequest:
+      required:
+      - refresh_token
+      type: object
+      description: Token refresh request
+      allOf:
+      - $ref: '#/components/schemas/TokenRequest'
+      - type: object
+        properties:
+          refresh_token:
+            type: string
+            description: Refresh token
+            format: uuid
+    TokenRequest:
+      type: object
+      properties:
+        grant_type:
+          type: string
+          description: Grant type
+      description: Token request
+      discriminator:
+        propertyName: grant_type
+    JwtAuthenticationResponse:
+      type: object
+      properties:
+        accessToken:
+          type: string
+          description: JWT access token
+        refreshToken:
+          type: string
+          description: JWT refresh token
+          format: uuid
+        expiresInSeconds:
+          type: integer
+          description: Token expiration time in seconds
+          format: int32
+        tokenType:
+          type: string
+          description: Token type
+      description: JWT authentication response
+    SetMyPasswordRequest:
+      required:
+      - newPassword
+      type: object
+      properties:
+        newPassword:
+          type: string
+          description: New password for the user
+    JsonPatch:
+      type: object
+    User:
+      required:
+      - email
+      - name
+      type: object
+      description: User model
+      allOf:
+      - $ref: '#/components/schemas/AbstractVersionedAuditable'
+      - type: object
+        properties:
+          id:
+            type: string
+            description: The id of the resource
+            format: uuid
+            readOnly: true
+          createdById:
+            type: string
+            description: The id of the user who created the resource
+            format: uuid
+            readOnly: true
+          createdDate:
+            type: string
+            description: The date and time the resource was created
+            format: date-time
+            readOnly: true
+          lastModifiedById:
+            type: string
+            description: The id of the user who last modified the resource
+            format: uuid
+            readOnly: true
+          lastModifiedDate:
+            type: string
+            description: The date and time the resource was last modified
+            format: date-time
+            readOnly: true
+          version:
+            type: integer
+            description: Resource version
+            format: int64
+            readOnly: true
+          name:
+            type: string
+            description: User name
+            example: John Doe
+          email:
+            type: string
+            description: User email
+            example: john@doe.com
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

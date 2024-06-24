@@ -1,0 +1,1514 @@
+{
+	"info": {
+		"_postman_id": "38496210-6db7-4955-a055-f66810939ce9",
+		"name": "Wired Relations Public API",
+		"description": "This API exposes endpoints to manage resources of Wired Relations.\n\nContact Support:\n Name: Wired Relations\n Email: support@wiredrelations.com",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "759113"
+	},
+	"item": [
+		{
+			"name": "org",
+			"item": [
+				{
+					"name": "{orgId}",
+					"item": [
+						{
+							"name": "vendors",
+							"item": [
+								{
+									"name": "{id}",
+									"item": [
+										{
+											"name": "Get vendor by id",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/org/{{orgId}}/vendors/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"org",
+														"{{orgId}}",
+														"vendors",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "02c16969-6642-4376-987f-0afa58f9b2f3"
+														}
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "Successful operation",
+													"originalRequest": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "application/json"
+															},
+															{
+																"description": "Added as a part of security scheme: bearer",
+																"key": "Authorization",
+																"value": "Bearer <token>"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/org/:orgId/vendors/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"org",
+																":orgId",
+																"vendors",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "orgId"
+																},
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "json",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "application/json"
+														}
+													],
+													"cookie": [],
+													"body": "{\n  \"name\": \"<string>\",\n  \"id\": \"<uuid>\",\n  \"createdById\": \"<uuid>\",\n  \"createdDate\": \"<dateTime>\",\n  \"lastModifiedById\": \"<uuid>\",\n  \"lastModifiedDate\": \"<dateTime>\",\n  \"version\": \"<long>\",\n  \"description\": \"<string>\"\n}"
+												}
+											]
+										},
+										{
+											"name": "Delete a vendor",
+											"request": {
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/org/{{orgId}}/vendors/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"org",
+														"{{orgId}}",
+														"vendors",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "<uuid>",
+															"description": "(Required) The id of the vendor"
+														}
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "Successful operation",
+													"originalRequest": {
+														"method": "DELETE",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "application/json"
+															},
+															{
+																"description": "Added as a part of security scheme: bearer",
+																"key": "Authorization",
+																"value": "Bearer <token>"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/org/:orgId/vendors/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"org",
+																":orgId",
+																"vendors",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "orgId"
+																},
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "json",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "application/json"
+														}
+													],
+													"cookie": [],
+													"body": "{\n  \"name\": \"<string>\",\n  \"id\": \"<uuid>\",\n  \"createdById\": \"<uuid>\",\n  \"createdDate\": \"<dateTime>\",\n  \"lastModifiedById\": \"<uuid>\",\n  \"lastModifiedDate\": \"<dateTime>\",\n  \"version\": \"<long>\",\n  \"description\": \"<string>\"\n}"
+												}
+											]
+										},
+										{
+											"name": "Patch a vendor",
+											"request": {
+												"method": "PATCH",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json-patch+json"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "[\r\n    { \"op\": \"replace\", \"path\": \"/description\", \"value\": \"Testing Public API - patch\" }\r\n]",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/org/{{orgId}}/vendors/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"org",
+														"{{orgId}}",
+														"vendors",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "02c16969-6642-4376-987f-0afa58f9b2f3",
+															"description": "(Required) The id of the vendor"
+														}
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "Successful operation",
+													"originalRequest": {
+														"method": "PATCH",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json-patch+json"
+															},
+															{
+																"key": "Accept",
+																"value": "application/json"
+															},
+															{
+																"description": "Added as a part of security scheme: bearer",
+																"key": "Authorization",
+																"value": "Bearer <token>"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/org/:orgId/vendors/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"org",
+																":orgId",
+																"vendors",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "orgId"
+																},
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "json",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "application/json"
+														}
+													],
+													"cookie": [],
+													"body": "{\n  \"name\": \"<string>\",\n  \"id\": \"<uuid>\",\n  \"createdById\": \"<uuid>\",\n  \"createdDate\": \"<dateTime>\",\n  \"lastModifiedById\": \"<uuid>\",\n  \"lastModifiedDate\": \"<dateTime>\",\n  \"version\": \"<long>\",\n  \"description\": \"<string>\"\n}"
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "Get vendors with optional filters",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/org/{{orgId}}/vendors?page=0&size=20&sort=name desc&name=Api Test Vendor 1",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"org",
+												"{{orgId}}",
+												"vendors"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "0"
+												},
+												{
+													"key": "size",
+													"value": "20"
+												},
+												{
+													"key": "sort",
+													"value": "name desc"
+												},
+												{
+													"key": "name",
+													"value": "Api Test Vendor 1"
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Successful operation",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													},
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/org/:orgId/vendors?name=<string>&page=0&size=20&sort=<string>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"org",
+														":orgId",
+														"vendors"
+													],
+													"query": [
+														{
+															"key": "name",
+															"value": "<string>",
+															"description": "Name filter. The name of the vendor"
+														},
+														{
+															"key": "page",
+															"value": "0",
+															"description": "Zero-based page index (0..N)"
+														},
+														{
+															"key": "size",
+															"value": "20",
+															"description": "The size of the page to be returned"
+														},
+														{
+															"key": "sort",
+															"value": "<string>",
+															"description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported."
+														}
+													],
+													"variable": [
+														{
+															"key": "orgId"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "[\n  {\n    \"name\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"createdById\": \"<uuid>\",\n    \"createdDate\": \"<dateTime>\",\n    \"lastModifiedById\": \"<uuid>\",\n    \"lastModifiedDate\": \"<dateTime>\",\n    \"version\": \"<long>\",\n    \"description\": \"<string>\"\n  },\n  {\n    \"name\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"createdById\": \"<uuid>\",\n    \"createdDate\": \"<dateTime>\",\n    \"lastModifiedById\": \"<uuid>\",\n    \"lastModifiedDate\": \"<dateTime>\",\n    \"version\": \"<long>\",\n    \"description\": \"<string>\"\n  }\n]"
+										}
+									]
+								},
+								{
+									"name": "Create a new vendor",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"Api Test Vendor 1\",\n  \"description\": \"Testing Public API\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/org/{{orgId}}/vendors",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"org",
+												"{{orgId}}",
+												"vendors"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Successful operation",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													},
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"name\": \"<string>\",\n  \"id\": \"<uuid>\",\n  \"createdById\": \"<uuid>\",\n  \"createdDate\": \"<dateTime>\",\n  \"lastModifiedById\": \"<uuid>\",\n  \"lastModifiedDate\": \"<dateTime>\",\n  \"version\": \"<long>\",\n  \"description\": \"<string>\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/org/:orgId/vendors",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"org",
+														":orgId",
+														"vendors"
+													],
+													"variable": [
+														{
+															"key": "orgId"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"name\": \"<string>\",\n  \"id\": \"<uuid>\",\n  \"createdById\": \"<uuid>\",\n  \"createdDate\": \"<dateTime>\",\n  \"lastModifiedById\": \"<uuid>\",\n  \"lastModifiedDate\": \"<dateTime>\",\n  \"version\": \"<long>\",\n  \"description\": \"<string>\"\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "systems",
+							"item": [
+								{
+									"name": "{id}",
+									"item": [
+										{
+											"name": "Get system by id",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/org/{{orgId}}/systems/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"org",
+														"{{orgId}}",
+														"systems",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "183122e3-d407-4cc6-be3b-13ccf065428f",
+															"description": "(Required) The id of the system"
+														}
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "Successful operation",
+													"originalRequest": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "application/json"
+															},
+															{
+																"description": "Added as a part of security scheme: bearer",
+																"key": "Authorization",
+																"value": "Bearer <token>"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/org/:orgId/systems/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"org",
+																":orgId",
+																"systems",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "orgId"
+																},
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "json",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "application/json"
+														}
+													],
+													"cookie": [],
+													"body": "{\n  \"name\": \"<string>\",\n  \"id\": \"<uuid>\",\n  \"createdById\": \"<uuid>\",\n  \"createdDate\": \"<dateTime>\",\n  \"lastModifiedById\": \"<uuid>\",\n  \"lastModifiedDate\": \"<dateTime>\",\n  \"version\": \"<long>\",\n  \"description\": \"<string>\",\n  \"ownerId\": \"<uuid>\",\n  \"responsibleId\": \"<uuid>\",\n  \"vendorId\": \"<uuid>\",\n  \"suggestion\": {\n    \"status\": \"REJECTED\",\n    \"deletionSuggestionStatus\": \"REJECTED\",\n    \"sources\": [\n      {\n        \"sourceId\": \"<string>\",\n        \"externalId\": \"<string>\",\n        \"firstSeen\": \"<dateTime>\",\n        \"firstNotSeen\": \"<dateTime>\"\n      },\n      {\n        \"sourceId\": \"<string>\",\n        \"externalId\": \"<string>\",\n        \"firstSeen\": \"<dateTime>\",\n        \"firstNotSeen\": \"<dateTime>\"\n      }\n    ]\n  },\n  \"lifecycleStage\": \"NOT_ACTIVE\"\n}"
+												}
+											]
+										},
+										{
+											"name": "Delete a system",
+											"request": {
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/org/{{orgId}}/systems/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"org",
+														"{{orgId}}",
+														"systems",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "<uuid>",
+															"description": "(Required) The id of the system"
+														}
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "Successful operation",
+													"originalRequest": {
+														"method": "DELETE",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "application/json"
+															},
+															{
+																"description": "Added as a part of security scheme: bearer",
+																"key": "Authorization",
+																"value": "Bearer <token>"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/org/:orgId/systems/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"org",
+																":orgId",
+																"systems",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "orgId"
+																},
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "json",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "application/json"
+														}
+													],
+													"cookie": [],
+													"body": "{\n  \"name\": \"<string>\",\n  \"id\": \"<uuid>\",\n  \"createdById\": \"<uuid>\",\n  \"createdDate\": \"<dateTime>\",\n  \"lastModifiedById\": \"<uuid>\",\n  \"lastModifiedDate\": \"<dateTime>\",\n  \"version\": \"<long>\",\n  \"description\": \"<string>\",\n  \"ownerId\": \"<uuid>\",\n  \"responsibleId\": \"<uuid>\",\n  \"vendorId\": \"<uuid>\",\n  \"suggestion\": {\n    \"status\": \"REJECTED\",\n    \"deletionSuggestionStatus\": \"REJECTED\",\n    \"sources\": [\n      {\n        \"sourceId\": \"<string>\",\n        \"externalId\": \"<string>\",\n        \"firstSeen\": \"<dateTime>\",\n        \"firstNotSeen\": \"<dateTime>\"\n      },\n      {\n        \"sourceId\": \"<string>\",\n        \"externalId\": \"<string>\",\n        \"firstSeen\": \"<dateTime>\",\n        \"firstNotSeen\": \"<dateTime>\"\n      }\n    ]\n  },\n  \"lifecycleStage\": \"NOT_ACTIVE\"\n}"
+												}
+											]
+										},
+										{
+											"name": "Patch a system",
+											"request": {
+												"method": "PATCH",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json-patch+json"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "[\r\n    { \"op\": \"replace\", \"path\": \"/description\", \"value\": \"Testing Public API - patch\" }\r\n]",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/org/{{orgId}}/systems/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"org",
+														"{{orgId}}",
+														"systems",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": "183122e3-d407-4cc6-be3b-13ccf065428f",
+															"description": "(Required) The id of the system"
+														}
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "Successful operation",
+													"originalRequest": {
+														"method": "PATCH",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json-patch+json"
+															},
+															{
+																"key": "Accept",
+																"value": "application/json"
+															},
+															{
+																"description": "Added as a part of security scheme: bearer",
+																"key": "Authorization",
+																"value": "Bearer <token>"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/org/:orgId/systems/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"org",
+																":orgId",
+																"systems",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "orgId"
+																},
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "json",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "application/json"
+														}
+													],
+													"cookie": [],
+													"body": "{\n  \"name\": \"<string>\",\n  \"id\": \"<uuid>\",\n  \"createdById\": \"<uuid>\",\n  \"createdDate\": \"<dateTime>\",\n  \"lastModifiedById\": \"<uuid>\",\n  \"lastModifiedDate\": \"<dateTime>\",\n  \"version\": \"<long>\",\n  \"description\": \"<string>\",\n  \"ownerId\": \"<uuid>\",\n  \"responsibleId\": \"<uuid>\",\n  \"vendorId\": \"<uuid>\",\n  \"suggestion\": {\n    \"status\": \"REJECTED\",\n    \"deletionSuggestionStatus\": \"REJECTED\",\n    \"sources\": [\n      {\n        \"sourceId\": \"<string>\",\n        \"externalId\": \"<string>\",\n        \"firstSeen\": \"<dateTime>\",\n        \"firstNotSeen\": \"<dateTime>\"\n      },\n      {\n        \"sourceId\": \"<string>\",\n        \"externalId\": \"<string>\",\n        \"firstSeen\": \"<dateTime>\",\n        \"firstNotSeen\": \"<dateTime>\"\n      }\n    ]\n  },\n  \"lifecycleStage\": \"NOT_ACTIVE\"\n}"
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "Get systems with optional filters",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/org/{{orgId}}/systems?page=0&size=20&sort=name desc&sourceId=POSTMAN&externalId=P1",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"org",
+												"{{orgId}}",
+												"systems"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "0",
+													"description": "Zero-based page index (0..N)"
+												},
+												{
+													"key": "size",
+													"value": "20",
+													"description": "The size of the page to be returned"
+												},
+												{
+													"key": "sort",
+													"value": "name desc",
+													"description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported."
+												},
+												{
+													"key": "sourceId",
+													"value": "POSTMAN",
+													"description": "Source ID filter (must be provided with externalId or not at all). An identifier of the source system. E.g. the name of the asset management system."
+												},
+												{
+													"key": "externalId",
+													"value": "P1",
+													"description": "External ID filter (must be provided with sourceId or not at all). An identifier of the system. E.g. the id of the system as defined by the asset management system."
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Successful operation",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													},
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/org/:orgId/systems?page=0&size=20&sort=<string>&sourceId=<string>&externalId=<string>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"org",
+														":orgId",
+														"systems"
+													],
+													"query": [
+														{
+															"key": "page",
+															"value": "0",
+															"description": "Zero-based page index (0..N)"
+														},
+														{
+															"key": "size",
+															"value": "20",
+															"description": "The size of the page to be returned"
+														},
+														{
+															"key": "sort",
+															"value": "<string>",
+															"description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported."
+														},
+														{
+															"key": "sourceId",
+															"value": "<string>",
+															"description": "Source ID filter (must be provided with externalId or not at all). An identifier of the source system. E.g. the name of the asset management system."
+														},
+														{
+															"key": "externalId",
+															"value": "<string>",
+															"description": "External ID filter (must be provided with sourceId or not at all). An identifier of the system. E.g. the id of the system as defined by the asset management system."
+														}
+													],
+													"variable": [
+														{
+															"key": "orgId"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "[\n  {\n    \"name\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"createdById\": \"<uuid>\",\n    \"createdDate\": \"<dateTime>\",\n    \"lastModifiedById\": \"<uuid>\",\n    \"lastModifiedDate\": \"<dateTime>\",\n    \"version\": \"<long>\",\n    \"description\": \"<string>\",\n    \"ownerId\": \"<uuid>\",\n    \"responsibleId\": \"<uuid>\",\n    \"vendorId\": \"<uuid>\",\n    \"suggestion\": {\n      \"status\": \"REJECTED\",\n      \"deletionSuggestionStatus\": \"SUGGESTED\",\n      \"sources\": [\n        {\n          \"sourceId\": \"<string>\",\n          \"externalId\": \"<string>\",\n          \"firstSeen\": \"<dateTime>\",\n          \"firstNotSeen\": \"<dateTime>\"\n        },\n        {\n          \"sourceId\": \"<string>\",\n          \"externalId\": \"<string>\",\n          \"firstSeen\": \"<dateTime>\",\n          \"firstNotSeen\": \"<dateTime>\"\n        }\n      ]\n    },\n    \"lifecycleStage\": \"NOT_ACTIVE\"\n  },\n  {\n    \"name\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"createdById\": \"<uuid>\",\n    \"createdDate\": \"<dateTime>\",\n    \"lastModifiedById\": \"<uuid>\",\n    \"lastModifiedDate\": \"<dateTime>\",\n    \"version\": \"<long>\",\n    \"description\": \"<string>\",\n    \"ownerId\": \"<uuid>\",\n    \"responsibleId\": \"<uuid>\",\n    \"vendorId\": \"<uuid>\",\n    \"suggestion\": {\n      \"status\": \"REJECTED\",\n      \"deletionSuggestionStatus\": \"SUGGESTED\",\n      \"sources\": [\n        {\n          \"sourceId\": \"<string>\",\n          \"externalId\": \"<string>\",\n          \"firstSeen\": \"<dateTime>\",\n          \"firstNotSeen\": \"<dateTime>\"\n        },\n        {\n          \"sourceId\": \"<string>\",\n          \"externalId\": \"<string>\",\n          \"firstSeen\": \"<dateTime>\",\n          \"firstNotSeen\": \"<dateTime>\"\n        }\n      ]\n    },\n    \"lifecycleStage\": \"NOT_ACTIVE\"\n  }\n]"
+										}
+									]
+								},
+								{
+									"name": "Create a new system",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"API Test System 1\",\n  \"description\": \"Testing Public API\",\n  \"ownerId\": \"e2d8989a-5aa0-4fd5-9a64-731958386e41\",\n  \"responsibleId\": \"e2d8989a-5aa0-4fd5-9a64-731958386e41\",\n  \"vendorId\": \"02c16969-6642-4376-987f-0afa58f9b2f3\",\n  \"suggestion\": {\n    \"sources\": [\n      {\n        \"sourceId\": \"POSTMAN\",\n        \"externalId\": \"P1\"\n      }\n    ]\n  },\n  \"lifecycleStage\": \"ACTIVE\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/org/{{orgId}}/systems",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"org",
+												"{{orgId}}",
+												"systems"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Successful operation",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													},
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"name\": \"<string>\",\n  \"id\": \"<uuid>\",\n  \"createdById\": \"<uuid>\",\n  \"createdDate\": \"<dateTime>\",\n  \"lastModifiedById\": \"<uuid>\",\n  \"lastModifiedDate\": \"<dateTime>\",\n  \"version\": \"<long>\",\n  \"description\": \"<string>\",\n  \"ownerId\": \"<uuid>\",\n  \"responsibleId\": \"<uuid>\",\n  \"vendorId\": \"<uuid>\",\n  \"suggestion\": {\n    \"status\": \"REJECTED\",\n    \"deletionSuggestionStatus\": \"REJECTED\",\n    \"sources\": [\n      {\n        \"sourceId\": \"<string>\",\n        \"externalId\": \"<string>\",\n        \"firstSeen\": \"<dateTime>\",\n        \"firstNotSeen\": \"<dateTime>\"\n      },\n      {\n        \"sourceId\": \"<string>\",\n        \"externalId\": \"<string>\",\n        \"firstSeen\": \"<dateTime>\",\n        \"firstNotSeen\": \"<dateTime>\"\n      }\n    ]\n  },\n  \"lifecycleStage\": \"NOT_ACTIVE\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/org/:orgId/systems",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"org",
+														":orgId",
+														"systems"
+													],
+													"variable": [
+														{
+															"key": "orgId"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"name\": \"<string>\",\n  \"id\": \"<uuid>\",\n  \"createdById\": \"<uuid>\",\n  \"createdDate\": \"<dateTime>\",\n  \"lastModifiedById\": \"<uuid>\",\n  \"lastModifiedDate\": \"<dateTime>\",\n  \"version\": \"<long>\",\n  \"description\": \"<string>\",\n  \"ownerId\": \"<uuid>\",\n  \"responsibleId\": \"<uuid>\",\n  \"vendorId\": \"<uuid>\",\n  \"suggestion\": {\n    \"status\": \"REJECTED\",\n    \"deletionSuggestionStatus\": \"REJECTED\",\n    \"sources\": [\n      {\n        \"sourceId\": \"<string>\",\n        \"externalId\": \"<string>\",\n        \"firstSeen\": \"<dateTime>\",\n        \"firstNotSeen\": \"<dateTime>\"\n      },\n      {\n        \"sourceId\": \"<string>\",\n        \"externalId\": \"<string>\",\n        \"firstSeen\": \"<dateTime>\",\n        \"firstNotSeen\": \"<dateTime>\"\n      }\n    ]\n  },\n  \"lifecycleStage\": \"NOT_ACTIVE\"\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "auth",
+							"item": [
+								{
+									"name": "token",
+									"item": [
+										{
+											"name": "Authenticate the user and return a JWT token",
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													},
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"password\": \"<string>\",\n  \"usernameOrEmail\": \"<string>\",\n  \"grant_type\": \"Bearer\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/org/{{orgId}}/auth/token",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"org",
+														"{{orgId}}",
+														"auth",
+														"token"
+													],
+													"query": [
+														{
+															"key": "useCookie",
+															"value": "<boolean>",
+															"disabled": true
+														}
+													]
+												},
+												"description": "Authenticate the user and return a JWT token. The token can be used in the Authorization header as a bearer token. This endpoint is not authenticated."
+											},
+											"response": [
+												{
+													"name": "Successful operation",
+													"originalRequest": {
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															},
+															{
+																"key": "Accept",
+																"value": "application/json"
+															},
+															{
+																"description": "Added as a part of security scheme: bearer",
+																"key": "Authorization",
+																"value": "Bearer <token>"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n  \"password\": \"<string>\",\n  \"usernameOrEmail\": \"<string>\",\n  \"grant_type\": \"<string>\",\n  \"totp\": \"<integer>\"\n}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/org/:orgId/auth/token?useCookie=<boolean>",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"org",
+																":orgId",
+																"auth",
+																"token"
+															],
+															"query": [
+																{
+																	"key": "useCookie",
+																	"value": "<boolean>"
+																}
+															],
+															"variable": [
+																{
+																	"key": "orgId"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "json",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "application/json"
+														}
+													],
+													"cookie": [],
+													"body": "{\n  \"accessToken\": \"<string>\",\n  \"refreshToken\": \"<uuid>\",\n  \"expiresInSeconds\": \"<integer>\",\n  \"tokenType\": \"<string>\"\n}"
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "setMyPassword",
+									"item": [
+										{
+											"name": "Set my password",
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"newPassword\": \"<string>\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/org/{{orgId}}/auth/setMyPassword",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"org",
+														"{{orgId}}",
+														"auth",
+														"setMyPassword"
+													]
+												},
+												"description": "Set the password for the authenticated user"
+											},
+											"response": [
+												{
+													"name": "Successful operation",
+													"originalRequest": {
+														"method": "POST",
+														"header": [
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															},
+															{
+																"description": "Added as a part of security scheme: bearer",
+																"key": "Authorization",
+																"value": "Bearer <token>"
+															}
+														],
+														"body": {
+															"mode": "raw",
+															"raw": "{\n  \"newPassword\": \"<string>\"\n}",
+															"options": {
+																"raw": {
+																	"headerFamily": "json",
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "{{baseUrl}}/org/:orgId/auth/setMyPassword",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"org",
+																":orgId",
+																"auth",
+																"setMyPassword"
+															],
+															"variable": [
+																{
+																	"key": "orgId"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "users",
+							"item": [
+								{
+									"name": "{id}",
+									"item": [
+										{
+											"name": "Get user by id",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/org/{{orgId}}/users/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"org",
+														"{{orgId}}",
+														"users",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id",
+															"value": ""
+														}
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "Successful operation",
+													"originalRequest": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "application/json"
+															},
+															{
+																"description": "Added as a part of security scheme: bearer",
+																"key": "Authorization",
+																"value": "Bearer <token>"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/org/:orgId/users/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"org",
+																":orgId",
+																"users",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "orgId"
+																},
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "json",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "application/json"
+														}
+													],
+													"cookie": [],
+													"body": "{\n  \"email\": \"<string>\",\n  \"name\": \"<string>\",\n  \"id\": \"<uuid>\",\n  \"createdById\": \"<uuid>\",\n  \"createdDate\": \"<dateTime>\",\n  \"lastModifiedById\": \"<uuid>\",\n  \"lastModifiedDate\": \"<dateTime>\",\n  \"version\": \"<long>\"\n}"
+												},
+												{
+													"name": "User not found",
+													"originalRequest": {
+														"method": "GET",
+														"header": [
+															{
+																"description": "Added as a part of security scheme: bearer",
+																"key": "Authorization",
+																"value": "Bearer <token>"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/org/:orgId/users/:id",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"org",
+																":orgId",
+																"users",
+																":id"
+															],
+															"variable": [
+																{
+																	"key": "orgId"
+																},
+																{
+																	"key": "id"
+																}
+															]
+														}
+													},
+													"status": "Not Found",
+													"code": 404,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "Get users with optional filters",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/org/{{orgId}}/users?emails=bobby@wiredrelations.com&page=0&size=20",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"org",
+												"{{orgId}}",
+												"users"
+											],
+											"query": [
+												{
+													"key": "emails",
+													"value": "bobby@wiredrelations.com",
+													"description": "Emails filter. Search users by email"
+												},
+												{
+													"key": "page",
+													"value": "0",
+													"description": "Zero-based page index (0..N)"
+												},
+												{
+													"key": "size",
+													"value": "20",
+													"description": "The size of the page to be returned"
+												},
+												{
+													"key": "sort",
+													"value": "<string>",
+													"description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Successful operation",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													},
+													{
+														"description": "Added as a part of security scheme: bearer",
+														"key": "Authorization",
+														"value": "Bearer <token>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/org/:orgId/users?emails=<string>&page=0&size=20&sort=<string>",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"org",
+														":orgId",
+														"users"
+													],
+													"query": [
+														{
+															"key": "emails",
+															"value": "<string>",
+															"description": "Emails filter. Search users by email"
+														},
+														{
+															"key": "page",
+															"value": "0",
+															"description": "Zero-based page index (0..N)"
+														},
+														{
+															"key": "size",
+															"value": "20",
+															"description": "The size of the page to be returned"
+														},
+														{
+															"key": "sort",
+															"value": "<string>",
+															"description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported."
+														}
+													],
+													"variable": [
+														{
+															"key": "orgId"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "[\n  {\n    \"email\": \"<string>\",\n    \"name\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"createdById\": \"<uuid>\",\n    \"createdDate\": \"<dateTime>\",\n    \"lastModifiedById\": \"<uuid>\",\n    \"lastModifiedDate\": \"<dateTime>\",\n    \"version\": \"<long>\"\n  },\n  {\n    \"email\": \"<string>\",\n    \"name\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"createdById\": \"<uuid>\",\n    \"createdDate\": \"<dateTime>\",\n    \"lastModifiedById\": \"<uuid>\",\n    \"lastModifiedDate\": \"<dateTime>\",\n    \"version\": \"<long>\"\n  }\n]"
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{bearerToken}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://api2.wiredrelations.dk"
+		},
+		{
+			"key": "orgId",
+			"value": "548c6b03-0537-11ea-a588-0242ac110004",
+			"type": "string"
+		},
+		{
+			"key": "bearerToken",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
