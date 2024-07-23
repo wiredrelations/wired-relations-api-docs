@@ -19,7 +19,7 @@ You get that by either authenticating, or, if you already did that, by using a r
 To log in, make a POST request on https://api2.wiredrelations.com/org/{{orgId}}/auth/token with username and password in the
 request body, like this:
 
-`POST https://apidemo.wiredrelations.com/org/af6d0e70-18f5-41ce-b5bb-df709358d523/auth/token`
+`POST https://api2.wiredrelations.com/org/af6d0e70-18f5-41ce-b5bb-df709358d523/auth/token`
 ```json
 {
     "grant_type": "Bearer",
